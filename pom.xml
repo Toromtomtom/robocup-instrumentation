@@ -30,7 +30,7 @@
 
     <scm>
         <connection>scm:git:git://github.com:Toromtomtom/robocup-instrumentation.git</connection>
-        <developerConnection>scm:git:git://github.com:Toromtomtom/robocup-instrumentation.git</developerConnection>
+        <developerConnection>scm:git:git://github.com/Toromtomtom/robocup-instrumentation.git</developerConnection>
         <url>http://github.com/Toromtomtom/robocup-instrumentation/tree/master</url>
     </scm>
 
