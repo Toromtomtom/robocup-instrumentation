@@ -4,7 +4,19 @@
 
 This project contains code to start and observe an instance of the robocup soccer server (https://sourceforge.net/projects/sserver/). 
 
-## Usage
+## Use it
+
+To use robocup-instrumentation in your Maven project, add it as a dependency:
+
+~~~~
+<dependency>
+   <groupId>com.github.toromtomtom</groupId>
+   <artifactId>robocup-instrumentation</artifactId>
+   <version>0.1</version>
+</dependency>
+~~~~
+
+## Process
 
 1. Start instances of the soccer server and two teams.
 2. Register as an observer of the server. The observer receives the positions of all players and the ball at each step and forwards these information to a message handler. Two simple message handler implementations are provided.    
