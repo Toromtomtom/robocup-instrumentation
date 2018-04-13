@@ -1,6 +1,6 @@
 # robocup-instrumentation
 
-[![Maven Central](https://img.shields.io/maven-central/v/org.apache.maven/apache-maven.svg)](https://search.maven.org/#artifactdetails%7Ccom.github.toromtomtom%7Crobocup-instrumentation%7C0.1%7Cjar)
+[![Maven Central with version prefix filter](https://img.shields.io/maven-central/v/org.apache.maven/apache-maven/2.svg)](ttps://search.maven.org/#artifactdetails%7Ccom.github.toromtomtom%7Crobocup-instrumentation%7C0.1%7Cjar)
 
 ## Synopsis
 
