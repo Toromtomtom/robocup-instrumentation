@@ -1,5 +1,7 @@
 # robocup-instrumentation
 
+[![Maven Central](https://img.shields.io/maven-central/v/org.apache.maven/apache-maven.svg)](https://search.maven.org/#artifactdetails%7Ccom.github.toromtomtom%7Crobocup-instrumentation%7C0.1%7Cjar)
+
 ## Synopsis
 
 This project contains code to start and observe an instance of the robocup soccer server (https://sourceforge.net/projects/sserver/). 
