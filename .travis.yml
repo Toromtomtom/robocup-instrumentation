@@ -1,3 +1,4 @@
 language: java
  
-after_success: "echo Success!"
+after_success: "mvn --batch-mode source:jar javadoc:jar deploy -DaltDeploymentRepository=snapshots::default::https://maven.mosi.informatik.uni-rostock.de/content/repositories/snapshots"
+ 
