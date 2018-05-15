@@ -9,26 +9,27 @@ cache:
     directories:
         - $HOME/.m2
         
+# no need to install anything
 install: true
+
+
+# copy the settings.xml to the maven directory
+before_script: "cp .travis.settings.xml $HOME/.m2/settings.xml"
 
 jobs:
     include:
         - stage: test
-          # copy the settings.xml to the maven directory
-          script: "cp .travis.settings.xml $HOME/.m2/settings.xml"
           # compile and test
           script: "mvn --batch-mode clean test"
-          # delete the newly generated files that should not be cached
-          script: "rm -rf $HOME/.m2/repository/com/github/toromtomtom/robocup-instrumentation"
           
         - stage: deploy
-          # copy the settings.xml to the maven directory
-          script: "cp .travis.settings.xml $HOME/.m2/settings.xml"
           # compile, test, and deploy
           script: "mvn --batch-mode clean source:jar javadoc:jar deploy -DaltDeploymentRepository=snapshots::default::https://maven.mosi.informatik.uni-rostock.de/content/repositories/snapshots"
-          # delete the newly generated files that should not be cached
-          script: "rm -rf $HOME/.m2/repository/com/github/toromtomtom/robocup-instrumentation"
-          
+      
+
+# delete the newly generated files that should not be cached
+before_cache: "rm -rf $HOME/.m2/repository/com/github/toromtomtom/robocup-instrumentation"
+      
 stages:
     - name: test
       if: branch != develop
