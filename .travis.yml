@@ -25,7 +25,9 @@ jobs:
           script: "rm -rf $HOME/.m2/repository/com/github/toromtomtom/robocup-instrumentation"
           
 stages:
-    -name: prepare
-    -name: test
-    -name: deploy
-    -name: cleanup
+    - name: prepare
+    - name: test
+      if: branch != develop
+    - name: deploy
+      if: branch = develop
+    - name: cleanup
