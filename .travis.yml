@@ -8,26 +8,29 @@ sudo: false
 cache:
     directories:
         - $HOME/.m2
+        
+install: true
 
 jobs:
     include:
-        - stage: prepare
+        - stage: test
           # copy the settings.xml to the maven directory
           script: "cp .travis.settings.xml $HOME/.m2/settings.xml"
-        - stage: test
           # compile and test
           script: "mvn --batch-mode clean test"
+          # delete the newly generated files that should not be cached
+          script: "rm -rf $HOME/.m2/repository/com/github/toromtomtom/robocup-instrumentation"
+          
         - stage: deploy
+          # copy the settings.xml to the maven directory
+          script: "cp .travis.settings.xml $HOME/.m2/settings.xml"
           # compile, test, and deploy
           script: "mvn --batch-mode clean source:jar javadoc:jar deploy -DaltDeploymentRepository=snapshots::default::https://maven.mosi.informatik.uni-rostock.de/content/repositories/snapshots"
-        - stage: cleanup
           # delete the newly generated files that should not be cached
           script: "rm -rf $HOME/.m2/repository/com/github/toromtomtom/robocup-instrumentation"
           
 stages:
-    - name: prepare
     - name: test
       if: branch != develop
     - name: deploy
       if: branch = develop
-    - name: cleanup
