@@ -12,22 +12,14 @@ cache:
 jobs:
     include:
         - stage: prepare
-            # copy the settings.xml to the maven directory
-            script: "cp .travis.settings.xml $HOME/.m2/settings.xml"
+          # copy the settings.xml to the maven directory
+          script: "cp .travis.settings.xml $HOME/.m2/settings.xml"
         - stage: test
-            # compile and test
-            script: "mvn --batch-mode clean test"
+          # compile and test
+          script: "mvn --batch-mode clean test"
         - stage: deploy
-            # compile, test, and deploy
-            script: "mvn --batch-mode clean source:jar javadoc:jar deploy -DaltDeploymentRepository=snapshots::default::https://maven.mosi.informatik.uni-rostock.de/content/repositories/snapshots"
+          # compile, test, and deploy
+          script: "mvn --batch-mode clean source:jar javadoc:jar deploy -DaltDeploymentRepository=snapshots::default::https://maven.mosi.informatik.uni-rostock.de/content/repositories/snapshots"
         - stage: cleanup
-            # delete the newly generated files that should not be cached
-            script: "rm -rf $HOME/.m2/repository/com/github/toromtomtom/robocup-instrumentation"
-
-stages:
-    - prepare
-    - test
-        if: branch != develop
-    - deploy
-        if: branch = develop
-    - cleanup
+          # delete the newly generated files that should not be cached
+          script: "rm -rf $HOME/.m2/repository/com/github/toromtomtom/robocup-instrumentation"
