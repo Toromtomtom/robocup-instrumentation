@@ -23,3 +23,9 @@ jobs:
         - stage: cleanup
           # delete the newly generated files that should not be cached
           script: "rm -rf $HOME/.m2/repository/com/github/toromtomtom/robocup-instrumentation"
+          
+stages:
+    -name: prepare
+    -name: test
+    -name: deploy
+    -name: cleanup
