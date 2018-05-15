@@ -1,13 +1,21 @@
+# this provides maven
 language: java
+
+# run in a docker container
 sudo: false 
 
+# cache the local maven artifact repository
 cache:
   directories:
   - $HOME/.m2
 
-deploy:
-    provider: script
-    script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn --batch-mode source:jar javadoc:jar deploy -DaltDeploymentRepository=snapshots::default::https://maven.mosi.informatik.uni-rostock.de/content/repositories/snapshots"
-    skip_cleanup: true
+# install step: do nothing
+install: true
+
+# copy the settings.xml to the maven directory
+before_script: "cp .travis.settings.xml $HOME/.m2/settings.xml"
+
+# build step: compile, test, deploy
+script: "mvn --batch-mode source:jar javadoc:jar deploy -DaltDeploymentRepository=snapshots::default::https://maven.mosi.informatik.uni-rostock.de/content/repositories/snapshots"
 
 
