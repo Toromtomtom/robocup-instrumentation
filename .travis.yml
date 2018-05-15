@@ -15,16 +15,18 @@ install: true
 # copy the settings.xml to the maven directory
 before_script: "cp .travis.settings.xml $HOME/.m2/settings.xml"
 
+# test on various jdks
+jdk:
+    - openjdk7
+    - openjdk8
+    - openjdk9
+
 jobs:
     include:
         - stage: test
-          # compile and test ...
+          # compile and test
           script: "mvn --batch-mode clean test"
-          # ... on various jdks
-          jdk:
-            - openjdk7
-            - openjdk8
-            - openjdk9
+          
           
         - stage: deploy
           # compile, test, and deploy ...
