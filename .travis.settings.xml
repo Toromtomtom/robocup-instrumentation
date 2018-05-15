@@ -4,7 +4,7 @@
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<servers>
 		<id>snapshots</id>
-		<username>$SNAPSHOTS_USERNAME</username>
-		<password>$SNAPSHOTS_PASSWORD</password>
+		<username>${env.SNAPSHOTS_USERNAME}</username>
+		<password>${env.SNAPSHOTS_PASSWORD}</password>
 	</servers>
 </settings>  
