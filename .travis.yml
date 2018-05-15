@@ -6,17 +6,23 @@ sudo: false
 
 # cache the local maven artifact repository
 cache:
-  directories:
-  - $HOME/.m2
+    directories:
+        - $HOME/.m2
 
-# install step: do nothing
-install: true
-
-# copy the settings.xml to the maven directory
-before_script: "cp .travis.settings.xml $HOME/.m2/settings.xml"
-
-# build step: compile, test, and deploy
-script:
-    - "mvn clean --batch-mode source:jar javadoc:jar deploy -DaltDeploymentRepository=snapshots::default::https://maven.mosi.informatik.uni-rostock.de/content/repositories/snapshots"
-    - "rm -rf $HOME/.m2/repository/com/github/toromtomtom/robocup-instrumentation"
+jobs:
+    include:
+        - stage: prepare
+            # copy the settings.xml to the maven directory
+            script: "cp .travis.settings.xml $HOME/.m2/settings.xml"
+        - stage: test
+            # compile and test
+            if: branch != develop
+            script: "mvn --batch-mode clean test"
+        - stage: deploy
+            # compile, test, and deploy
+            if: branch = develop
+            script: "mvn --batch-mode clean source:jar javadoc:jar deploy -DaltDeploymentRepository=snapshots::default::https://maven.mosi.informatik.uni-rostock.de/content/repositories/snapshots"
+        - stage: cleanup
+            # delete the newly generated files that should not be cached
+            script: "rm -rf $HOME/.m2/repository/com/github/toromtomtom/robocup-instrumentation"
 
