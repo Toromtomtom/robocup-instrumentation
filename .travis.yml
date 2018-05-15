@@ -16,6 +16,7 @@ install: true
 before_script: "cp .travis.settings.xml $HOME/.m2/settings.xml"
 
 # build step: compile, test, and deploy
-script: "mvn clean --batch-mode source:jar javadoc:jar deploy -DaltDeploymentRepository=snapshots::default::https://maven.mosi.informatik.uni-rostock.de/content/repositories/snapshots"
+script:
+    - "mvn clean --batch-mode source:jar javadoc:jar deploy -DaltDeploymentRepository=snapshots::default::https://maven.mosi.informatik.uni-rostock.de/content/repositories/snapshots"
+    - "rm -rf $HOME/.m2/repository/com/github/toromtomtom/robocup-instrumentation"
 
-after_script: "rm -rf $HOME/.m2/repository/com/github/toromtomtom/robocup-instrumentation"
