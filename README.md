@@ -1,6 +1,7 @@
 # robocup-instrumentation
 
 [![Maven Central](https://img.shields.io/maven-central/v/com.github.toromtomtom/robocup-instrumentation.svg)](https://search.maven.org/#artifactdetails%7Ccom.github.toromtomtom%7Crobocup-instrumentation%7C0.1%7Cjar)
+[![Build Status](https://travis-ci.org/Toromtomtom/robocup-instrumentation.svg?branch=master)](https://travis-ci.org/Toromtomtom/robocup-instrumentation)
 
 ## Synopsis
 
