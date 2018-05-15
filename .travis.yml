@@ -12,19 +12,25 @@ cache:
 # no need to install anything
 install: true
 
-
 # copy the settings.xml to the maven directory
 before_script: "cp .travis.settings.xml $HOME/.m2/settings.xml"
 
 jobs:
     include:
         - stage: test
-          # compile and test
+          # compile and test ...
           script: "mvn --batch-mode clean test"
+          # ... on various jdks
+          jdk:
+            - openjdk7
+            - openjdk8
+            - openjdk9
           
         - stage: deploy
-          # compile, test, and deploy
+          # compile, test, and deploy ...
           script: "mvn --batch-mode clean source:jar javadoc:jar deploy -DaltDeploymentRepository=snapshots::default::https://maven.mosi.informatik.uni-rostock.de/content/repositories/snapshots"
+          # ... with java 7
+          jdk: openjdk7
       
 
 # delete the newly generated files that should not be cached
