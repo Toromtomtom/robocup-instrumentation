@@ -1,8 +1,13 @@
 language: java
- 
+sudo: false 
+
+cache:
+  directories:
+  - $HOME/.m2
+
 deploy:
     provider: script
     script: "cp .travis.settings.xml $HOME/.m2/settings.xml && mvn --batch-mode source:jar javadoc:jar deploy -DaltDeploymentRepository=snapshots::default::https://maven.mosi.informatik.uni-rostock.de/content/repositories/snapshots"
     skip_cleanup: true
 
- 
+
